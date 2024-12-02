@@ -10,13 +10,13 @@ import org.springframework.context.ConfigurableApplicationContext;
 
 import java.io.IOException;
 
-public class Initializer extends Application {
+public class SpringInitializer extends Application {
 
     private ConfigurableApplicationContext applicationContext;
 
     @Override
     public void init() {
-        applicationContext = new SpringApplicationBuilder(DemoApp.class).run();
+        applicationContext = new SpringApplicationBuilder(Main.class).run();
     }
 
     @Override
