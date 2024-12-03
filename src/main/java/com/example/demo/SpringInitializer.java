@@ -1,11 +1,9 @@
 package com.example.demo;
 
-import com.example.demo.telas.TelaInicial;
+import com.example.demo.utils.AbridorJanela;
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.stage.Stage;
 import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.context.ApplicationEvent;
 import org.springframework.context.ConfigurableApplicationContext;
 
 import java.io.IOException;
@@ -20,24 +18,14 @@ public class SpringInitializer extends Application {
     }
 
     @Override
-    public void stop() {
-        applicationContext.close();
-        Platform.exit();
+    public void start(Stage stage) throws IOException {
+        AbridorJanela abridorJanela = applicationContext.getBean(AbridorJanela.class);
+        abridorJanela.abrirNovaJanela("/views/tela-inicial-view.fxml", "Tela inicial", 600, 400);
     }
 
     @Override
-    public void start(Stage stage) throws IOException {
-        applicationContext.publishEvent(new StageReadyEvent(stage));
-        new TelaInicial();
-    }
-
-    public static class StageReadyEvent extends ApplicationEvent {
-        public StageReadyEvent(Stage stage) {
-            super(stage);
-        }
-        public Stage getStage() {
-            return (Stage) getSource();
-        }
+    public void stop() {
+        applicationContext.close();
     }
 
 }

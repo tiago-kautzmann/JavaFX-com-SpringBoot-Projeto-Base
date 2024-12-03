@@ -1,16 +1,21 @@
 package com.example.demo.controllers;
 
+import com.example.demo.telas.TelaSecundaria;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
+import org.springframework.stereotype.Controller;
 
+@Controller
 public class TelaInicialController {
 
-    @FXML
-    private Label welcomeText;
+    private TelaSecundaria telaSecundaria;
+
+    public TelaInicialController(TelaSecundaria telaSecundaria) {
+        this.telaSecundaria = telaSecundaria;
+    }
 
     @FXML
-    protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
+    protected void onAbrirSecundariaButtonClick() {
+        telaSecundaria.abrir();
     }
 
 }
